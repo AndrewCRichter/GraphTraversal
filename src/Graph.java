@@ -4,10 +4,13 @@ public class Graph
 {
     private int numNodes;
     private Node nodes[];
+    private boolean unfound[];
+    Node searchQueueStart;
+    Node searchQueueEnd;
+
     public Graph()
     {
-        this.numNodes = 8;
-        this.nodes = new Node[numNodes];
+        this(8);
         this.addConnection(1, 3);
         this.addConnection(2, 1);
         this.addConnection(2, 3);
@@ -36,6 +39,11 @@ public class Graph
     {
         this.numNodes = numNodes;
         this.nodes = new Node[numNodes];
+        this.unfound = new boolean[numNodes];
+        for(int i = 0; i < numNodes; ++i)
+        {
+            unfound[i] = true;
+        }
     }
     public void addConnection(int startID, int endID)
     {
